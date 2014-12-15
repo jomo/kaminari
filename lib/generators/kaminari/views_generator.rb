@@ -29,7 +29,7 @@ BANNER
             say %Q[template_engine: #{template_engine} is not available for theme: #{file_name}]
           end
         else
-          say %Q[no such theme: #{file_name}\n  avaliable themes: #{themes.map(&:name).join ", "}]
+          say %Q[no such theme: #{file_name}\n  avaliable themes: #{self.class.themes.map(&:name).join ", "}]
         end
       end
 
@@ -90,7 +90,7 @@ BANNER
       end
 
       def templates_for(template_engine) #:nodoc:
-        @templates.select {|t| !t.description?}.select {|t| !t.view? || (t.engine == template_engine)}
+        @templates.select {|t| t.engine == template_engine }
       end
     end
 
